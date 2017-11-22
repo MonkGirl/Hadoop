@@ -1,3 +1,3 @@
 # Hadoop
   * Learning[Hadoop]
-  * new
+  * A fantasic book for learning hadoop
