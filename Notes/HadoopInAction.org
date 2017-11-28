@@ -17,9 +17,12 @@
 
 * 初识Hadoop
 1. 在一个全配置的集群上，“运行Hadoop”意味着在网络分布的不同服务器上运行一组守护进程(daemons)。这些守护进程有特殊的角色，一些存在单个服务器上，一些则运行在多个服务器上。它们包括：
-   1. NameNode(名字节点)
-   2. DataNode(数据节点)
-   3. Secondary NameNode(次名字节点)
-   4. JobTracker(作业跟踪节点)
-   5. TaskTracker(任务跟踪节点)
+   1. NameNode(名字节点)：Hadoop在分布式计算和分布式存储中都采用了主/从(master/slave)结构。分布式存储系统被称为Hadoop文件系统，或者简称HDFS。NameNode位于HDFS的主端，它指导从端的DataNode执行底层的I/O任务。NameNode跟踪文件如何被分割成文件块，而这些块又被哪些节点存储，以及分布式文件系统的整体运行状态是否正常。运行NameNode会消耗大量的内存和I/O资源。
+   2. DataNode(数据节点):每一个集群上的从节点都会驻留一个DataNode守护进程，来执行分布式文件系统的繁重工作---将HDFS数据块读取或者写入到本地文件系统的实际文件中。
+   3. Secondary NameNode(次名字节点)：用于监测HDFS集群状态的辅助守护进程。像NameNode一样，每个集群有一个SNN，它同常独占一台服务器，该服务器不会运行其他的DataNode或者TaskTracer守护进程。SNN与NameNode的不同在于它不接收或记录HDFS的任何实时变化。相反它与NameNode通信，根据集群所配置的时间间隔获取HDFS元数据的快照。
+   4. JobTracker(作业跟踪节点)：JobTracker守护进程时应用程序和Hadoop之间的纽带。一旦提交代码到集群上，JobTracker就会确定执行计划。通常运行在服务器集群的主节点上。
+   5. TaskTracker(任务跟踪节点):与存储的守护进程一样，计算的守护进程也遵循主/从架构：JobTracker作为主节点，检测MapReduce作业的整个执行过程，同时，TaskTracker管理各个任务在每个从节点上的执行情况。每个TaskTracker负责执行由JobTracker分配的单项任务。TaskTracker持续不断地与JobTracker通信。
 
+* Hadoop组件
+1. HDFS是一种文件系统，专为MapReduce这类框架下的大规模分布式数据处理而设计。
+2. Hadoop的文件命令采取的形式为 hadoop fs -cmd <args>，其中cmd是具体的文件命令，而<args>是一组数目可变的参数，cmd的命令通常与UNIX对应的命令相同。
