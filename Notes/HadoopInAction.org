@@ -1,0 +1,25 @@
+* Hadoop简介
+1. 比较SQL数据库和Hadoop
+   1) 用向外扩展代替向上扩展，（分布式系统，俗称向外扩展；大型单机服务器，俗称向上扩展）
+   2) 用键/值对代替关系表，关系型数据库一个基本原则是让数据按照某种模式存放在具有关系型数据结构的表中。在Hadoop中，数据的来源可以有任何形式，但最终会转化为键/值对以供处理。
+   3) 用函数式（MapReduce）代替声明式查询（SQL）。SQL查询数据的手段是，声明想要查询结果并让数据库引擎判定如何获取数据，在MapReduce中，实际的数据处理步骤是由用户指定。SQL使用查询语句，而MapReduce则使用脚本和代码。
+   4) 用离线批量处理代替在线处理。Hadoop是专为离线处理和大规模数据分析而设计的，并不适合对几个记录随机读写在线事务处理模式。
+2. MapReduce是一个数据处理模型，它最大的优点是容易扩展到多个计算节点上处理数据，在MapReduce模型中，数据处理原语被称为mapper和reducer。
+3. MapReduce程序的执行分为两个主要阶段，为mapping和reducing。每个阶段均定义为一个数据处理函数，分别被称为mapper和reducer。在mapping阶段，MapReduce获取输入数据并将数据单元装入mapper。在reduceing阶段，reducer处理来自mapper的所有输出，并给出最终结果。简而言之，mapper意味着将输入进行过滤和转换，使reducer可以完成聚合。
+  |        | 输入           | 输出           |
+  |--------+----------------+----------------|
+  | map    | <k1, v1>       | list(<k2, v2>) |
+  | reduce | <k2, list(v2)> | list(<k3, v3>) |
+4. 在MapReduce框架中编写应用程序就是定制化mapper和reducer的过程。
+   1) 应用的输入必须组织为一个键/值对的列表list(<k2, v2>)。用于处理多个文集爱你的输入格式通常为list(<String filename, String file_content>)，用于处理日志文件这种大文件的输入格式为list(<Integer line_number, String log_event>)。
+   2) 含有键/值对的列表被拆分，进而通过调用mapper的map函数对每个单独的键/值对<k1, v1>进行处理。在这里，键k1经常被mapper所忽略。mapper转换每个<k1, v1>对并将之放入<k2, v2>对的列表种。处理键/值对可以采用任意的顺序，而且，这种转换必须时封闭的，使得输出仅依赖于一个单独的键/值对。
+   3) 所有mapper的输出(在概念上)被聚合到一个包含<k2, v2>对的巨大列表中。所有共享相同k2的对被组织在一起形成一个新的键/值对<k2, list(v2)>。框架让reducer来分别处理每个被聚合起来的<k2, list(v2)>。
+
+* 初识Hadoop
+1. 在一个全配置的集群上，“运行Hadoop”意味着在网络分布的不同服务器上运行一组守护进程(daemons)。这些守护进程有特殊的角色，一些存在单个服务器上，一些则运行在多个服务器上。它们包括：
+   1. NameNode(名字节点)
+   2. DataNode(数据节点)
+   3. Secondary NameNode(次名字节点)
+   4. JobTracker(作业跟踪节点)
+   5. TaskTracker(任务跟踪节点)
+
