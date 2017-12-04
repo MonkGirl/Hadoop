@@ -69,9 +69,13 @@ public class WordCount {
     Configuration conf = new Configuration();
     
     //自动删除输出目录
-    Path outputPath = new Path(args[1]);
-    outputPath.getFileSystem(conf).delete(outputPath, true);
-    String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
+//    Path outputPath = new Path(args[1]);
+//    outputPath.getFileSystem(conf).delete(outputPath, true);
+    
+    //String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
+    String inputPath = "hdfs://192.168.1.2:9000/home/hadoop/user/input";
+    String outputPath = "hdfs://192.168.1.2:9000/home/hadoop/user/output";
+    String[] otherArgs = new String[] {inputPath,outputPath};
     if (otherArgs.length < 2) {
       System.err.println("Usage: wordcount <in> [<in>...] <out>");
       System.exit(2);

@@ -11,18 +11,25 @@
   | map    | <k1, v1>       | list(<k2, v2>) |
   | reduce | <k2, list(v2)> | list(<k3, v3>) |
 4. 在MapReduce框架中编写应用程序就是定制化mapper和reducer的过程。
-   1) 应用的输入必须组织为一个键/值对的列表list(<k2, v2>)。用于处理多个文集爱你的输入格式通常为list(<String filename, String file_content>)，用于处理日志文件这种大文件的输入格式为list(<Integer line_number, String log_event>)。
+   1) 应用的输入必须组织为一个键/值对的列表list(<k2, v2>)。用于处理多个文件的输入格式通常为list(<string filename, string file_content>)，用于处理日志文件这种大文件的输入格式为list(<integer line_number, string log_event>)。
    2) 含有键/值对的列表被拆分，进而通过调用mapper的map函数对每个单独的键/值对<k1, v1>进行处理。在这里，键k1经常被mapper所忽略。mapper转换每个<k1, v1>对并将之放入<k2, v2>对的列表种。处理键/值对可以采用任意的顺序，而且，这种转换必须时封闭的，使得输出仅依赖于一个单独的键/值对。
    3) 所有mapper的输出(在概念上)被聚合到一个包含<k2, v2>对的巨大列表中。所有共享相同k2的对被组织在一起形成一个新的键/值对<k2, list(v2)>。框架让reducer来分别处理每个被聚合起来的<k2, list(v2)>。
 
-* 初识Hadoop
-1. 在一个全配置的集群上，“运行Hadoop”意味着在网络分布的不同服务器上运行一组守护进程(daemons)。这些守护进程有特殊的角色，一些存在单个服务器上，一些则运行在多个服务器上。它们包括：
-   1. NameNode(名字节点)：Hadoop在分布式计算和分布式存储中都采用了主/从(master/slave)结构。分布式存储系统被称为Hadoop文件系统，或者简称HDFS。NameNode位于HDFS的主端，它指导从端的DataNode执行底层的I/O任务。NameNode跟踪文件如何被分割成文件块，而这些块又被哪些节点存储，以及分布式文件系统的整体运行状态是否正常。运行NameNode会消耗大量的内存和I/O资源。
-   2. DataNode(数据节点):每一个集群上的从节点都会驻留一个DataNode守护进程，来执行分布式文件系统的繁重工作---将HDFS数据块读取或者写入到本地文件系统的实际文件中。
-   3. Secondary NameNode(次名字节点)：用于监测HDFS集群状态的辅助守护进程。像NameNode一样，每个集群有一个SNN，它同常独占一台服务器，该服务器不会运行其他的DataNode或者TaskTracer守护进程。SNN与NameNode的不同在于它不接收或记录HDFS的任何实时变化。相反它与NameNode通信，根据集群所配置的时间间隔获取HDFS元数据的快照。
-   4. JobTracker(作业跟踪节点)：JobTracker守护进程时应用程序和Hadoop之间的纽带。一旦提交代码到集群上，JobTracker就会确定执行计划。通常运行在服务器集群的主节点上。
-   5. TaskTracker(任务跟踪节点):与存储的守护进程一样，计算的守护进程也遵循主/从架构：JobTracker作为主节点，检测MapReduce作业的整个执行过程，同时，TaskTracker管理各个任务在每个从节点上的执行情况。每个TaskTracker负责执行由JobTracker分配的单项任务。TaskTracker持续不断地与JobTracker通信。
+* 初识hadoop
+1. 在一个全配置的集群上，“运行hadoop”意味着在网络分布的不同服务器上运行一组守护进程(daemons)。这些守护进程有特殊的角色，一些存在单个服务器上，一些则运行在多个服务器上。它们包括：
+   1. namenode(名字节点)：hadoop在分布式计算和分布式存储中都采用了主/从(master/slave)结构。分布式存储系统被称为hadoop文件系统，或者简称hdfs。namenode位于hdfs的主端，它指导从端的datanode执行底层的i/o任务。namenode跟踪文件如何被分割成文件块，而这些块又被哪些节点存储，以及分布式文件系统的整体运行状态是否正常。运行namenode会消耗大量的内存和i/o资源。
+   2. datanode(数据节点):每一个集群上的从节点都会驻留一个datanode守护进程，来执行分布式文件系统的繁重工作---将hdfs数据块读取或者写入到本地文件系统的实际文件中。
+   3. secondary namenode(次名字节点)：用于监测hdfs集群状态的辅助守护进程。像namenode一样，每个集群有一个snn，它同常独占一台服务器，该服务器不会运行其他的datanode或者tasktracer守护进程。snn与namenode的不同在于它不接收或记录hdfs的任何实时变化。相反它与namenode通信，根据集群所配置的时间间隔获取hdfs元数据的快照。
+   4. jobtracker(作业跟踪节点)：jobtracker守护进程时应用程序和hadoop之间的纽带。一旦提交代码到集群上，jobtracker就会确定执行计划。通常运行在服务器集群的主节点上。
+   5. tasktracker(任务跟踪节点):与存储的守护进程一样，计算的守护进程也遵循主/从架构：jobtracker作为主节点，检测mapreduce作业的整个执行过程，同时，tasktracker管理各个任务在每个从节点上的执行情况。每个tasktracker负责执行由jobtracker分配的单项任务。tasktracker持续不断地与jobtracker通信。
 
-* Hadoop组件
-1. HDFS是一种文件系统，专为MapReduce这类框架下的大规模分布式数据处理而设计。
-2. Hadoop的文件命令采取的形式为 hadoop fs -cmd <args>，其中cmd是具体的文件命令，而<args>是一组数目可变的参数，cmd的命令通常与UNIX对应的命令相同。
+* hadoop组件
+1. hdfs是一种文件系统，专为mapreduce这类框架下的大规模分布式数据处理而设计。
+2. hadoop的文件命令采取的形式为 hadoop fs -cmd <args>，其中cmd是具体的文件命令，而<args>是一组数目可变的参数，cmd的命令通常与unix对应的命令相同。
+3. hadoop文件api的起点时filesystem类。这是一个与文件系统交互的抽象类，存在不同的具体实现子类用来处理hdfs和本地文件系统，可以通过调用factory方法filesystem.get(configuration conf)来得到所需的filesystem实例。configuration类是用于保存键/值配置参数的特殊类。它的默认实例化方法是以hdfs系统的资源配置为基础的。
+4. mapreduce程序通过操作键/值对来处理数据，一般形式为
+   map:(k1, v1)->list(k2, v2)
+   reduce:(k2, list(v2))->list(k3, v3)
+5. 为了让键/值对可以在集群上移动，mapreduce框架提供了一种序列化键/值对的方法。实现writable接口的类可以是值，而实现writablecomparable<t>接口的类可以是键也可以是值。
+6. 一个类要作为mapper，需继承mapreducebase基类并实现mapper接口，mapper和reducer的基类均为mapreducebase类。void configure(jobconf job)。该函数提供提取xml配置文件或者应用程序主类中的参数，在数据处理之前调用该函数。void close()。作为map任务结束前的最后一个操作，该函数完成所有的结尾工作。
+7. Mapper接口负责数据处理阶段。采用Mapper<K1,V1,K2,V2>Java泛型。Mapper只有一个方法map，用于处理一个单独的键/值对。

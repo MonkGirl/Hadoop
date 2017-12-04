@@ -8,6 +8,7 @@ import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.util.GenericOptionsParser;
 
 public class PutMerge {
 	public static void main(String[] args){
@@ -16,22 +17,29 @@ public class PutMerge {
 			FileSystem hdfs = FileSystem.get(conf);
 			FileSystem local = FileSystem.getLocal(conf);
 			
-			Path inputDir = new Path("");
-			Path hdfsFile = new Path("");
+			String inputPath = "hdfs://192.168.1.2:9000/home/hadoop/user/input/file1.txt";
+		    String outputPath = "hdfs://192.168.1.2:9000/home/hadoop/user/output";
 			
-			FileStatus[] inputFiles = local.listStatus(inputDir);
-			FSDataOutputStream out = hdfs.create(hdfsFile);
+			Path inputHdfsFiles = new Path(inputPath);
+			Path outputHdfsFiles = new Path(outputPath);
+			 
 			
-			for(int i=0;i<inputFiles.length;i++) {
-				System.out.println(inputFiles[i].getPath().getName());
-				FSDataInputStream in = local.open(inputFiles[i].getPath());
+			//FileStatus[] inputFiles = local.listStatus(inputDir);
+			//FileStatus[] inputFiles = hdfs.
+			FSDataOutputStream out = hdfs.create(outputHdfsFiles);
+			//FSDataInputStream in = hdfs.open(inputHdfsFiles);
+			
+			//for(int i=0;i<inputFiles.length;i++) {
+				//System.out.println(inputFiles[i].getPath().getName());
+				//FSDataInputStream in = local.open(inputFiles[i].getPath());
+			    FSDataInputStream in = hdfs.open(inputHdfsFiles);
 				byte[] buffer = new byte[1024];
 				int bytesRead = 0;
 				while((bytesRead = in.read(buffer))>0) {
 					out.write(buffer, 0, bytesRead);
 				}
 				in.close();
-			}
+			//}
 			out.close();
 		}catch(IOException e){
 			e.printStackTrace();
