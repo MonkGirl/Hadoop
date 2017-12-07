@@ -5,10 +5,8 @@ import java.io.IOException;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FSDataOutputStream;
-import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.util.GenericOptionsParser;
 
 public class PutMerge {
 	public static void main(String[] args){
@@ -22,7 +20,6 @@ public class PutMerge {
 			
 			Path inputHdfsFiles = new Path(inputPath);
 			Path outputHdfsFiles = new Path(outputPath);
-			 
 			
 			//FileStatus[] inputFiles = local.listStatus(inputDir);
 			//FileStatus[] inputFiles = hdfs.
