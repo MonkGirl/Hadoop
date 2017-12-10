@@ -34,7 +34,7 @@
 6. 一个类要作为mapper，需继承mapreducebase基类并实现mapper接口，mapper和reducer的基类均为mapreducebase类。void configure(jobconf job)。该函数提供提取xml配置文件或者应用程序主类中的参数，在数据处理之前调用该函数。void close()。作为map任务结束前的最后一个操作，该函数完成所有的结尾工作。
 7. Mapper接口负责数据处理阶段。采用Mapper<K1,V1,K2,V2>Java泛型。Mapper只有一个方法map，用于处理一个单独的键/值对。
 8. reducer的实现和mapper一样必须首先在MapReduce基类上扩展，允许配置和清理。当reducer任务接收来自各个mapper的输出时，它按照键/值对中的键对输入数据进行排序，并将相同的值归并。然后调用reduce()函数，并通过迭代处理那些与指定键相关联的值。生成一个列表(K3,V3)。OutputCollector接收reduce阶段的输出，并写入输出文件。
-k9. Hadoop通过HashPartitioner类强制执行对键进行散列来确定reducer。
+9. Hadoop通过HashPartitioner类强制执行对键进行散列来确定reducer。
 10. MapReduce将输入数据分割成块，这些块可以在多台计算机上并行处理，这些块被称为输入分片(Input Split)。FSDataInputStream扩展了DataInputStream以支持随机读。
 11. 常用的InputFormat类
   | TextInputFormat               | key:LongWritable value:Text |
@@ -44,4 +44,13 @@ k9. Hadoop通过HashPartitioner类强制执行对键进行散列来确定reducer
   | SequenceFileInputFormat<K, V> | key:K value:V               |
   |-------------------------------+-----------------------------|
   | NLineInputFormat              | key:LongWritable value:Text |
-12. InputFormat需要执行两个功能：1、确定所有用于输入数据的文件，并将之分割为输入分片，每个map任务分配一个分片。2、提供一个对象(RecordReader),循环提取给定分片中的记录，并解析每个记录为预定义类型的键与值。
+12. InputFormat需要执行两个功能：1、getSplits()方法，确定所有用于输入数据的文件，并将之分割为输入分片，每个map任务分配一个分片。2、getRecordReader()提供一个对象(RecordReader),循环提取给定分片中的记录，并解析每个记录为预定义类型的键与值。
+13. MapReduce输出数据到文件使用outputFormat类。输出文件放在一个公用目录中，通常命名为part-nnnn，nnnn是reducer的分区ID。RecordWriter对象将输出结果进行格式化，而RecordReader对输入格式进行解析。
+ | TextOutputFormat<K, V>         | 将每个记录写成一行文本，键和值以字符串的形式写入，并以制表符分隔 |
+ |--------------------------------+------------------------------------------------------------------|
+ | SequenceFileOutputFormat<K, V> | 以Hadoop专有序列文件格式写入键/值对                              |
+ |--------------------------------+------------------------------------------------------------------|
+ | NullOutputFormat<K, V>         | 无输出                                                           |
+14. 
+
+ 
