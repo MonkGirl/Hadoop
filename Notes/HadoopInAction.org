@@ -51,6 +51,4 @@
  | SequenceFileOutputFormat<K, V> | 以Hadoop专有序列文件格式写入键/值对                              |
  |--------------------------------+------------------------------------------------------------------|
  | NullOutputFormat<K, V>         | 无输出                                                           |
-14. 
-
- 
+14. MapReduceBase的configure()和close()方法提供非操作性实现，configure()和close()方法来建立和清除map(reduce)任务。

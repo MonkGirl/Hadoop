@@ -1,0 +1,218 @@
+DEBUG pool-7-thread-1 org.apache.hadoop.metrics2.impl.MetricsSourceAdapter - Done
+DEBUG pool-7-thread-1 org.apache.hadoop.metrics2.util.MBeans - Registered Hadoop:service=JobTracker,name=ShuffleClientMetrics-1295291022
+DEBUG pool-7-thread-1 org.apache.hadoop.metrics2.impl.MetricsSourceAdapter - MBean for source ShuffleClientMetrics-1295291022 registered.
+DEBUG pool-7-thread-1 org.apache.hadoop.metrics2.impl.MetricsSystemImpl - Registered source ShuffleClientMetrics-1295291022
+INFO pool-7-thread-1 org.apache.hadoop.mapreduce.task.reduce.MergeManagerImpl - MergerManager: memoryLimit=2629566464, maxSingleShuffleLimit=657391616, mergeThreshold=1735513984, ioSortFactor=10, memToMemMergeOutputsThreshold=10
+INFO EventFetcher for fetching Map Completion Events org.apache.hadoop.mapreduce.task.reduce.EventFetcher - attempt_local2015142659_0001_r_000000_0 Thread started: EventFetcher for fetching Map Completion Events
+DEBUG EventFetcher for fetching Map Completion Events org.apache.hadoop.mapreduce.task.reduce.EventFetcher - Got 0 map completion events from 0
+DEBUG EventFetcher for fetching Map Completion Events org.apache.hadoop.mapreduce.task.reduce.EventFetcher - GetMapEventsThread about to sleep for 1000
+DEBUG localfetcher#1 org.apache.hadoop.mapreduce.task.reduce.LocalFetcher - LocalFetcher 1 going to fetch: attempt_local2015142659_0001_m_000000_0
+DEBUG localfetcher#1 org.apache.hadoop.mapreduce.task.reduce.MergeManagerImpl - attempt_local2015142659_0001_m_000000_0: Proceeding with shuffle since usedMemory (0) is lesser than memoryLimit (2629566464).CommitMemory is (0)
+INFO localfetcher#1 org.apache.hadoop.mapreduce.task.reduce.LocalFetcher - localfetcher#1 about to shuffle output of map attempt_local2015142659_0001_m_000000_0 decomp: 613 len: 617 to MEMORY
+INFO localfetcher#1 org.apache.hadoop.mapreduce.task.reduce.InMemoryMapOutput - Read 613 bytes from map-output for attempt_local2015142659_0001_m_000000_0
+INFO localfetcher#1 org.apache.hadoop.mapreduce.task.reduce.MergeManagerImpl - closeInMemoryFile -> map-output of size: 613, inMemoryMapOutputs.size() -> 1, commitMemory -> 0, usedMemory ->613
+DEBUG localfetcher#1 org.apache.hadoop.mapreduce.task.reduce.ShuffleSchedulerImpl - map attempt_local2015142659_0001_m_000000_0 done 1 / 1 copied.
+INFO EventFetcher for fetching Map Completion Events org.apache.hadoop.mapreduce.task.reduce.EventFetcher - EventFetcher is interrupted.. Returning
+INFO pool-7-thread-1 org.apache.hadoop.mapred.LocalJobRunner - 1 / 1 copied.
+INFO pool-7-thread-1 org.apache.hadoop.mapreduce.task.reduce.MergeManagerImpl - finalMerge called with 1 in-memory map-outputs and 0 on-disk map-outputs
+INFO pool-7-thread-1 org.apache.hadoop.mapred.Merger - Merging 1 sorted segments
+INFO pool-7-thread-1 org.apache.hadoop.mapred.Merger - Down to the last merge-pass, with 1 segments left of total size: 604 bytes
+DEBUG pool-7-thread-1 org.apache.hadoop.fs.FileSystem - NativeIO.createDirectoryWithMode error, path = \tmp\hadoop-MonkGirl\mapred\local\localRunner\MonkGirl\jobcache\job_local2015142659_0001\attempt_local2015142659_0001_r_000000_0\output, mode = 755
+183: Cannot create a file when that file already exists.
+
+	at org.apache.hadoop.io.nativeio.NativeIO$Windows.createDirectoryWithMode0(Native Method)
+	at org.apache.hadoop.io.nativeio.NativeIO$Windows.createDirectoryWithMode(NativeIO.java:521)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkOneDirWithMode(RawLocalFileSystem.java:509)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkdirsWithOptionalPermission(RawLocalFileSystem.java:562)
+	at org.apache.hadoop.fs.RawLocalFileSystem.mkdirs(RawLocalFileSystem.java:534)
+	at org.apache.hadoop.fs.RawLocalFileSystem.create(RawLocalFileSystem.java:303)
+	at org.apache.hadoop.fs.RawLocalFileSystem.create(RawLocalFileSystem.java:292)
+	at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1083)
+	at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:972)
+	at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:960)
+	at org.apache.hadoop.mapreduce.task.reduce.MergeManagerImpl.finalMerge(MergeManagerImpl.java:738)
+	at org.apache.hadoop.mapreduce.task.reduce.MergeManagerImpl.close(MergeManagerImpl.java:379)
+	at org.apache.hadoop.mapreduce.task.reduce.Shuffle.run(Shuffle.java:158)
+	at org.apache.hadoop.mapred.ReduceTask.run(ReduceTask.java:377)
+	at org.apache.hadoop.mapred.LocalJobRunner$Job$ReduceTaskRunnable.run(LocalJobRunner.java:347)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+INFO pool-7-thread-1 org.apache.hadoop.mapreduce.task.reduce.MergeManagerImpl - Merged 1 segments, 613 bytes to disk to satisfy reduce memory limit
+DEBUG pool-7-thread-1 org.apache.hadoop.mapreduce.task.reduce.MergeManagerImpl - Disk file: /tmp/hadoop-MonkGirl/mapred/local/localRunner/MonkGirl/jobcache/job_local2015142659_0001/attempt_local2015142659_0001_r_000000_0/output/map_0.out.merged Length is 617
+INFO pool-7-thread-1 org.apache.hadoop.mapreduce.task.reduce.MergeManagerImpl - Merging 1 files, 617 bytes from disk
+INFO pool-7-thread-1 org.apache.hadoop.mapreduce.task.reduce.MergeManagerImpl - Merging 0 segments, 0 bytes from memory into reduce
+INFO pool-7-thread-1 org.apache.hadoop.mapred.Merger - Merging 1 sorted segments
+INFO pool-7-thread-1 org.apache.hadoop.mapred.Merger - Down to the last merge-pass, with 1 segments left of total size: 604 bytes
+INFO pool-7-thread-1 org.apache.hadoop.mapred.LocalJobRunner - 1 / 1 copied.
+DEBUG pool-7-thread-1 org.apache.hadoop.mapreduce.lib.output.FileOutputFormat - Work file for TaskAttemptContextImpl{JobContextImpl{jobId=job_local2015142659_0001}; taskId=attempt_local2015142659_0001_r_000000_0, status=''} extension '' is hdfs://192.168.1.9:9000/home/hadoop/user/output/_temporary/0/_temporary/attempt_local2015142659_0001_r_000000_0/part-r-00000
+DEBUG pool-7-thread-1 org.apache.hadoop.hdfs.DFSClient - /home/hadoop/user/output/_temporary/0/_temporary/attempt_local2015142659_0001_r_000000_0/part-r-00000: masked={ masked: rw-r--r--, unmasked: rw-rw-rw- }
+DEBUG IPC Parameter Sending Thread #0 org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl sending #8 org.apache.hadoop.hdfs.protocol.ClientProtocol.create
+DEBUG IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl got value #8
+DEBUG pool-7-thread-1 org.apache.hadoop.ipc.ProtobufRpcEngine - Call: create took 104ms
+DEBUG pool-7-thread-1 org.apache.hadoop.hdfs.DFSClient - computePacketChunkSize: src=/home/hadoop/user/output/_temporary/0/_temporary/attempt_local2015142659_0001_r_000000_0/part-r-00000, chunkSize=516, chunksPerPacket=126, packetSize=65016
+INFO pool-7-thread-1 org.apache.hadoop.conf.Configuration.deprecation - mapred.skip.on is deprecated. Instead, use mapreduce.job.skiprecords
+DEBUG LeaseRenewer:MonkGirl@192.168.1.9:9000 org.apache.hadoop.hdfs.client.impl.LeaseRenewer - Lease renewer daemon for [DFSClient_NONMAPREDUCE_1205141147_1] with renew id 1 started
+DEBUG pool-7-thread-1 org.apache.hadoop.hdfs.DFSClient - WriteChunk allocating new packet seqno=0, src=/home/hadoop/user/output/_temporary/0/_temporary/attempt_local2015142659_0001_r_000000_0/part-r-00000, packetSize=65016, chunksPerPacket=126, bytesCurBlock=0, DFSOutputStream:block==null
+DEBUG pool-7-thread-1 org.apache.hadoop.hdfs.DataStreamer - Queued packet seqno: 0 offsetInBlock: 0 lastPacketInBlock: false lastByteOffsetInBlock: 491, block==null
+DEBUG pool-7-thread-1 org.apache.hadoop.hdfs.DataStreamer - Queued packet seqno: 1 offsetInBlock: 491 lastPacketInBlock: true lastByteOffsetInBlock: 491, block==null
+DEBUG pool-7-thread-1 org.apache.hadoop.hdfs.DataStreamer - block==null waiting for ack for: 1
+DEBUG Thread-16 org.apache.hadoop.hdfs.DataStreamer - stage=PIPELINE_SETUP_CREATE, block==null
+DEBUG Thread-16 org.apache.hadoop.hdfs.DataStreamer - Allocating new block: block==null
+DEBUG IPC Parameter Sending Thread #0 org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl sending #9 org.apache.hadoop.hdfs.protocol.ClientProtocol.addBlock
+DEBUG IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl got value #9
+DEBUG Thread-16 org.apache.hadoop.ipc.ProtobufRpcEngine - Call: addBlock took 9ms
+DEBUG Thread-16 org.apache.hadoop.hdfs.DataStreamer - pipeline = [DatanodeInfoWithStorage[192.168.1.10:9866,DS-19044d77-b9d6-4ef3-bd21-212db75178c7,DISK], DatanodeInfoWithStorage[192.168.1.9:9866,DS-c1513dfb-2b33-4b64-971b-a53d615ea8bd,DISK]], blk_1073741826_1002
+DEBUG Thread-16 org.apache.hadoop.hdfs.DataStreamer - Connecting to datanode 192.168.1.10:9866
+DEBUG Thread-16 org.apache.hadoop.hdfs.DataStreamer - Send buf size 65536
+DEBUG Thread-16 org.apache.hadoop.hdfs.protocol.datatransfer.sasl.SaslDataTransferClient - SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+DEBUG Thread-16 org.apache.hadoop.hdfs.protocol.datatransfer.sasl.SaslDataTransferClient - SASL client skipping handshake in unsecured configuration for addr = /192.168.1.10, datanodeId = DatanodeInfoWithStorage[192.168.1.10:9866,DS-19044d77-b9d6-4ef3-bd21-212db75178c7,DISK]
+DEBUG DataStreamer for file /home/hadoop/user/output/_temporary/0/_temporary/attempt_local2015142659_0001_r_000000_0/part-r-00000 block BP-1094189320-192.168.1.9-1531500268664:blk_1073741826_1002 org.apache.hadoop.hdfs.DataStreamer - nodes [DatanodeInfoWithStorage[192.168.1.10:9866,DS-19044d77-b9d6-4ef3-bd21-212db75178c7,DISK], DatanodeInfoWithStorage[192.168.1.9:9866,DS-c1513dfb-2b33-4b64-971b-a53d615ea8bd,DISK]] storageTypes [DISK, DISK] storageIDs [DS-19044d77-b9d6-4ef3-bd21-212db75178c7, DS-c1513dfb-2b33-4b64-971b-a53d615ea8bd]
+DEBUG DataStreamer for file /home/hadoop/user/output/_temporary/0/_temporary/attempt_local2015142659_0001_r_000000_0/part-r-00000 block BP-1094189320-192.168.1.9-1531500268664:blk_1073741826_1002 org.apache.hadoop.hdfs.DataStreamer - blk_1073741826_1002 sending packet seqno: 0 offsetInBlock: 0 lastPacketInBlock: false lastByteOffsetInBlock: 491
+DEBUG DataStreamer for file /home/hadoop/user/output/_temporary/0/_temporary/attempt_local2015142659_0001_r_000000_0/part-r-00000 block BP-1094189320-192.168.1.9-1531500268664:blk_1073741826_1002 org.apache.hadoop.hdfs.DataStreamer - stage=DATA_STREAMING, blk_1073741826_1002
+DEBUG ResponseProcessor for block BP-1094189320-192.168.1.9-1531500268664:blk_1073741826_1002 org.apache.hadoop.hdfs.DataStreamer - DFSClient seqno: 0 reply: SUCCESS reply: SUCCESS downstreamAckTimeNanos: 3147469 flag: 0 flag: 0
+DEBUG DataStreamer for file /home/hadoop/user/output/_temporary/0/_temporary/attempt_local2015142659_0001_r_000000_0/part-r-00000 block BP-1094189320-192.168.1.9-1531500268664:blk_1073741826_1002 org.apache.hadoop.hdfs.DataStreamer - blk_1073741826_1002 sending packet seqno: 1 offsetInBlock: 491 lastPacketInBlock: true lastByteOffsetInBlock: 491
+DEBUG main org.apache.hadoop.security.UserGroupInformation - PrivilegedAction as:MonkGirl (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.getTaskCompletionEvents(Job.java:729)
+DEBUG main org.apache.hadoop.security.UserGroupInformation - PrivilegedAction as:MonkGirl (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.updateStatus(Job.java:328)
+DEBUG main org.apache.hadoop.security.UserGroupInformation - PrivilegedAction as:MonkGirl (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.updateStatus(Job.java:328)
+DEBUG ResponseProcessor for block BP-1094189320-192.168.1.9-1531500268664:blk_1073741826_1002 org.apache.hadoop.hdfs.DataStreamer - DFSClient seqno: 1 reply: SUCCESS reply: SUCCESS downstreamAckTimeNanos: 6125775 flag: 0 flag: 0
+DEBUG DataStreamer for file /home/hadoop/user/output/_temporary/0/_temporary/attempt_local2015142659_0001_r_000000_0/part-r-00000 block BP-1094189320-192.168.1.9-1531500268664:blk_1073741826_1002 org.apache.hadoop.hdfs.DataStreamer - Closing old block BP-1094189320-192.168.1.9-1531500268664:blk_1073741826_1002
+DEBUG IPC Parameter Sending Thread #0 org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl sending #10 org.apache.hadoop.hdfs.protocol.ClientProtocol.complete
+DEBUG IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl got value #10
+DEBUG pool-7-thread-1 org.apache.hadoop.ipc.ProtobufRpcEngine - Call: complete took 6ms
+INFO pool-7-thread-1 org.apache.hadoop.mapred.Task - Task:attempt_local2015142659_0001_r_000000_0 is done. And is in the process of committing
+DEBUG IPC Parameter Sending Thread #0 org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl sending #11 org.apache.hadoop.hdfs.protocol.ClientProtocol.getFileInfo
+DEBUG IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl got value #11
+DEBUG pool-7-thread-1 org.apache.hadoop.ipc.ProtobufRpcEngine - Call: getFileInfo took 3ms
+INFO pool-7-thread-1 org.apache.hadoop.mapred.LocalJobRunner - 1 / 1 copied.
+INFO pool-7-thread-1 org.apache.hadoop.mapred.Task - Task attempt_local2015142659_0001_r_000000_0 is allowed to commit now
+DEBUG IPC Parameter Sending Thread #0 org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl sending #12 org.apache.hadoop.hdfs.protocol.ClientProtocol.getFileInfo
+DEBUG IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl got value #12
+DEBUG pool-7-thread-1 org.apache.hadoop.ipc.ProtobufRpcEngine - Call: getFileInfo took 2ms
+DEBUG pool-7-thread-1 org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Merging data from HdfsLocatedFileStatus{path=hdfs://192.168.1.9:9000/home/hadoop/user/output/_temporary/0/_temporary/attempt_local2015142659_0001_r_000000_0; isDirectory=true; modification_time=1531835688071; access_time=0; owner=MonkGirl; group=supergroup; permission=rwxr-xr-x; isSymlink=false; hasAcl=false; isEncrypted=false; isErasureCoded=false} to hdfs://192.168.1.9:9000/home/hadoop/user/output
+DEBUG IPC Parameter Sending Thread #0 org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl sending #13 org.apache.hadoop.hdfs.protocol.ClientProtocol.getFileInfo
+DEBUG IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl got value #13
+DEBUG pool-7-thread-1 org.apache.hadoop.ipc.ProtobufRpcEngine - Call: getFileInfo took 2ms
+DEBUG IPC Parameter Sending Thread #0 org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl sending #14 org.apache.hadoop.hdfs.protocol.ClientProtocol.getListing
+DEBUG IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl got value #14
+DEBUG pool-7-thread-1 org.apache.hadoop.ipc.ProtobufRpcEngine - Call: getListing took 24ms
+DEBUG pool-7-thread-1 org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Merging data from HdfsLocatedFileStatus{path=hdfs://192.168.1.9:9000/home/hadoop/user/output/_temporary/0/_temporary/attempt_local2015142659_0001_r_000000_0/part-r-00000; isDirectory=false; length=491; replication=3; blocksize=134217728; modification_time=1531835688794; access_time=1531835688071; owner=MonkGirl; group=supergroup; permission=rw-r--r--; isSymlink=false; hasAcl=false; isEncrypted=false; isErasureCoded=false} to hdfs://192.168.1.9:9000/home/hadoop/user/output/part-r-00000
+DEBUG IPC Parameter Sending Thread #0 org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl sending #15 org.apache.hadoop.hdfs.protocol.ClientProtocol.getFileInfo
+DEBUG IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl got value #15
+DEBUG pool-7-thread-1 org.apache.hadoop.ipc.ProtobufRpcEngine - Call: getFileInfo took 6ms
+DEBUG IPC Parameter Sending Thread #0 org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl sending #16 org.apache.hadoop.hdfs.protocol.ClientProtocol.rename
+DEBUG IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl got value #16
+DEBUG pool-7-thread-1 org.apache.hadoop.ipc.ProtobufRpcEngine - Call: rename took 10ms
+INFO pool-7-thread-1 org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter - Saved output of task 'attempt_local2015142659_0001_r_000000_0' to hdfs://192.168.1.9:9000/home/hadoop/user/output
+INFO pool-7-thread-1 org.apache.hadoop.mapred.LocalJobRunner - reduce > reduce
+INFO pool-7-thread-1 org.apache.hadoop.mapred.Task - Task 'attempt_local2015142659_0001_r_000000_0' done.
+INFO pool-7-thread-1 org.apache.hadoop.mapred.Task - Final Counters for attempt_local2015142659_0001_r_000000_0: Counters: 29
+	File System Counters
+		FILE: Number of bytes read=1449
+		FILE: Number of bytes written=472021
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=557
+		HDFS: Number of bytes written=491
+		HDFS: Number of read operations=10
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=4
+	Map-Reduce Framework
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=30
+		Reduce shuffle bytes=617
+		Reduce input records=30
+		Reduce output records=30
+		Spilled Records=30
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=0
+		Total committed heap usage (bytes)=260046848
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Output Format Counters 
+		Bytes Written=491
+INFO pool-7-thread-1 org.apache.hadoop.mapred.LocalJobRunner - Finishing task: attempt_local2015142659_0001_r_000000_0
+DEBUG pool-7-thread-1 org.apache.hadoop.util.concurrent.ExecutorHelper - afterExecute in thread: pool-7-thread-1, runnable type: java.util.concurrent.FutureTask
+INFO Thread-6 org.apache.hadoop.mapred.LocalJobRunner - reduce task executor complete.
+DEBUG IPC Parameter Sending Thread #0 org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl sending #17 org.apache.hadoop.hdfs.protocol.ClientProtocol.delete
+DEBUG IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl got value #17
+DEBUG Thread-6 org.apache.hadoop.ipc.ProtobufRpcEngine - Call: delete took 6ms
+DEBUG Thread-6 org.apache.hadoop.hdfs.DFSClient - /home/hadoop/user/output/_SUCCESS: masked={ masked: rw-r--r--, unmasked: rw-rw-rw- }
+DEBUG IPC Parameter Sending Thread #0 org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl sending #18 org.apache.hadoop.hdfs.protocol.ClientProtocol.create
+DEBUG IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl got value #18
+DEBUG Thread-6 org.apache.hadoop.ipc.ProtobufRpcEngine - Call: create took 5ms
+DEBUG Thread-6 org.apache.hadoop.hdfs.DFSClient - computePacketChunkSize: src=/home/hadoop/user/output/_SUCCESS, chunkSize=516, chunksPerPacket=126, packetSize=65016
+DEBUG Thread-6 org.apache.hadoop.hdfs.DataStreamer - block==null waiting for ack for: -1
+DEBUG IPC Parameter Sending Thread #0 org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl sending #19 org.apache.hadoop.hdfs.protocol.ClientProtocol.complete
+DEBUG IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl got value #19
+DEBUG Thread-6 org.apache.hadoop.ipc.ProtobufRpcEngine - Call: complete took 3ms
+DEBUG Thread-6 org.apache.hadoop.security.UserGroupInformation - PrivilegedAction as:MonkGirl (auth:SIMPLE) from:org.apache.hadoop.fs.FileContext.getAbstractFileSystem(FileContext.java:328)
+INFO main org.apache.hadoop.mapreduce.Job -  map 100% reduce 100%
+DEBUG main org.apache.hadoop.security.UserGroupInformation - PrivilegedAction as:MonkGirl (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.getTaskCompletionEvents(Job.java:729)
+DEBUG main org.apache.hadoop.security.UserGroupInformation - PrivilegedAction as:MonkGirl (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.updateStatus(Job.java:328)
+DEBUG main org.apache.hadoop.security.UserGroupInformation - PrivilegedAction as:MonkGirl (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.updateStatus(Job.java:328)
+DEBUG main org.apache.hadoop.security.UserGroupInformation - PrivilegedAction as:MonkGirl (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.getTaskCompletionEvents(Job.java:729)
+DEBUG main org.apache.hadoop.security.UserGroupInformation - PrivilegedAction as:MonkGirl (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.updateStatus(Job.java:328)
+DEBUG main org.apache.hadoop.security.UserGroupInformation - PrivilegedAction as:MonkGirl (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.updateStatus(Job.java:328)
+INFO main org.apache.hadoop.mapreduce.Job - Job job_local2015142659_0001 completed successfully
+DEBUG main org.apache.hadoop.security.UserGroupInformation - PrivilegedAction as:MonkGirl (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.getCounters(Job.java:817)
+INFO main org.apache.hadoop.mapreduce.Job - Counters: 35
+	File System Counters
+		FILE: Number of bytes read=1632
+		FILE: Number of bytes written=943425
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=1114
+		HDFS: Number of bytes written=491
+		HDFS: Number of read operations=15
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=6
+	Map-Reduce Framework
+		Map input records=22
+		Map output records=43
+		Map output bytes=683
+		Map output materialized bytes=617
+		Input split bytes=121
+		Combine input records=43
+		Combine output records=30
+		Reduce input groups=30
+		Reduce shuffle bytes=617
+		Reduce input records=30
+		Reduce output records=30
+		Spilled Records=60
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=0
+		Total committed heap usage (bytes)=520093696
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=557
+	File Output Format Counters 
+		Bytes Written=491
+DEBUG main org.apache.hadoop.security.UserGroupInformation - PrivilegedAction as:MonkGirl (auth:SIMPLE) from:org.apache.hadoop.mapreduce.Job.updateStatus(Job.java:328)
+DEBUG pool-4-thread-1 org.apache.hadoop.ipc.Client - stopping client from cache: org.apache.hadoop.ipc.Client@4c178a76
+DEBUG pool-4-thread-1 org.apache.hadoop.ipc.Client - removing client from cache: org.apache.hadoop.ipc.Client@4c178a76
+DEBUG pool-4-thread-1 org.apache.hadoop.ipc.Client - stopping actual client because no more references remain: org.apache.hadoop.ipc.Client@4c178a76
+DEBUG pool-4-thread-1 org.apache.hadoop.ipc.Client - Stopping client
+DEBUG IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl: closed
+DEBUG IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl org.apache.hadoop.ipc.Client - IPC Client (1550207152) connection to /192.168.1.9:9000 from MonkGirl: stopped, remaining connections 0
+DEBUG Thread-3 org.apache.hadoop.util.ShutdownHookManager - ShutdownHookManger complete shutdown.
